@@ -1,0 +1,367 @@
+<header class="nobleNav noDropdownTransition">
+
+    <ul class="navRoot">
+        <!-- logo -->
+        <li class="navSection logo mt-2 ml-2">
+            <div class="noble-logo">
+                <a href="/">
+                    <img src="/files/noble-logo.png" id="noble_logo"  alt="Noble Enterprise"
+                        title="Noble Enterprise" style="transform: translate(0%, 0%);">
+                </a>
+            </div>
+        </li>
+        <li class="navSection primary p-2">
+           <a class="rootLink" href="/"> Home </a> 
+            <a class="rootLink hasDropdown" data-dropdown="about" href="/about">
+                Company
+            </a>
+            <a class="rootLink hasDropdown" data-dropdown="product">
+                Products
+            </a>
+            <a class="rootLink" href="/contact">
+                Contact
+            </a>
+            <a class="rootLink" href="/inquiry?new=1">
+               Inquiry
+            </a>
+        </li>
+        <li class="navSection secondary">
+            {% if not hide_login %}
+            <a href="/login" class="rootLink btn-login-area mt-1">{{ _("Login") }}</a> {% endif %}
+
+            {% if frappe.session.user != 'Guest' %}
+            <a href="#" class="rootLink hasDropdown" data-dropdown="noble-login" data-label="website-post-login">
+                <span class="user-image-wrapper text-center"></span>
+                <span class="full-name"></span>
+                <b class="caret"></b>
+            </a>
+            {% endif %}
+            <a href="#" class="d-none"></a>
+        </li>
+        <li class="navSection mobile">
+            <div id="content">
+                <div id="navsidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="nav-wrapper">
+                <nav id="navsidebar" class="vh-100">
+                    <!-- navsidebar Links -->
+                    <div class="d-flex justify-content-center p-2">
+                        <img src="/files/noble-logo.png" alt="logo" title="Logo" style="
+                        width: 260px;">
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="p-3">
+                            <!-- <img src="/files/nav-home.svg" title="Home" alt="Home" class="nav-service-icon"> -->
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="p-3">
+
+                            <a href="/about" data-ls="aboutsubmenu" class="go-tosub-menu" data-toggle="collapse" aria-expanded="false">
+                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg" alt="Left Arrow" title="Web App Development" height="15" width="15">Company
+                            </a>
+
+                            <img data-ls="aboutsubmenu" src="/files/right-arrow-nav.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                            
+                            <ul class="collapse list-unstyled ml-5" id='aboutsubmenu'>
+                                <li class="p-3">
+                                    <a href="/about"> <img class="nav-service-icon" src="/files/about.svg" alt="About Noble" title="About Noble">About Noble</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="p-3">
+                            <a href="/product" data-ls="products" data-toggle="collapse" aria-expanded="false"
+                                class="go-tosub-menu">
+                                   <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
+                                    alt="Left Arrow" title="Web App Development" height="15" width="15">
+                                <!-- <img class="nav-service-icon" src="/files/nav-services.svg" alt="Services" title="Services"> -->
+                                Products
+                            </a>
+                            <img data-ls="products" src="/files/right-arrow-nav.svg"
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+                            <ul class="collapse list-unstyled ml-5" id='products'>
+                                <li class="p-3">
+                                    <a href='/products/almonds'
+                                        class="link-underline p-1">Almonds</a>
+                                </li>
+                                <li class="p-3 pl-4">
+                                    <a href='/products/cashew'
+                                        class="link-underline p-1">Cashew</a>
+                                </li>
+                                <li class="p-3 pl-4">
+                                    <a href='/products/fig'
+                                        class="link-underline p-1">Dried Figs</a>
+                                </li>
+                                <li class="p-3 pl-4">
+                                    <a href='/products/pistachios'
+                                        class="link-underline p-1">Pistachios</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="p-3">
+                            <!-- <img src="/files/nav-home.svg" title="Home" alt="Home" class="nav-service-icon"> -->
+                            <a href="/inquiry?new=1">Inquiry</a>
+                        </li>
+                        {% if not hide_login %}
+                        <li class="btn-login-area">
+                            <!-- <img class="nav-service-icon" src="/files/nav-login.svg" alt="Login" title="Login"> -->
+                            <a href="/login">{{ _("Login") }}</a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a data-ls="loginsubmenu" class="go-tosub-menu" data-toggle="collapse"
+                                aria-expanded="false">
+                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
+                                    alt="Left Arrow" title="About Company">
+                                <span class="user-image-wrapper"></span>
+                                <span class="full-name"></span>
+                                <b class="caret"></b>
+                            </a>
+                            <!-- <img data-ls="loginsubmenu" src="/files/right-arrow-nav.svg" class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15"> -->
+                            <ul class="collapse list-unstyled ml-5" id='loginsubmenu'>
+                                <li>
+                                    <a class="linkContainer" href="/me" rel="nofollow">
+                                         <img class="nav-service-icon" src="/files/account.svg" alt="My Account"
+                                            title="My Account"> 
+                                        <h6 class="link-underline mt-1">{{ _('My Account') }}
+                                        </h6>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="linkContainer item-about" href="/?cmd=web_logout" rel="nofollow">
+                                         <img class="nav-service-icon" src="/files/logout.svg" alt="Logout"
+                                            title="Logout"> 
+                                        <h6 class="link-underline mt-1">{{ _('Logout') }}
+                                        </h6>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="linkContainer item-about" href="/desk" rel="nofollow">
+                                        <img class="nav-service-icon" src="/files/swap.svg"
+                                            alt="Switch To Desk" title="Switch To Desk"> 
+                                        <h6 class="link-underline mt-1">{{ _('Switch To Desk') }}
+                                        </h6>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </li>
+    </ul>
+    
+    <div class="dropdownRoot">
+        <div class="dropdownBackground">
+            <div class="alternateBackground"></div>
+        </div>
+        <div class="dropdownArrow"></div>
+        <div class="dropdownContainer">
+            <!-- Product SUb menu -->
+            <div class="dropdownSection left industryGroup" data-dropdown="product">
+                <!-- with button -->
+                <div class="dropdownContent dropdownContent-product">
+                    <!-- products list -->
+                    <div class="linkGroup pl-5">
+                        <div class="industry-group pt-3 pl-4">
+                            <div class="industry-group-sub">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- p1 -->
+                                        <div class="col-3  inner dropdown">
+
+                                            <a class="" href="/products/almonds">
+                                                <h5 class="title">Almonds</h5>
+                                                <span class="icon-dropdown " data-toggle-menu-mb="">
+                                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                </span>
+                                            </a>
+                                            <a class="side-image" href="/products/almonds" >
+                                                    <img src="/files/almonds in bowl1.png" alt="Almonds" id="product-nav-image">
+                                            </a>
+                                                <ul class="dropdown ">
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        Mollar
+                                                    </a>
+                                                    </li>
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        Macron
+                                                    </a>
+                                                    </li>
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        Ferraduel
+                                                    </a>
+                                                    </li>
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        Nonpareil
+                                                    </a>
+                                                    </li>
+                                                </ul>
+                                        </div>
+                                        <!-- p2 -->
+                                        <div class="col-3  inner dropdown  card-content" >
+                                          
+                                            <a class="" href="/products/cashew">
+                                                <h5 class="title">Cashew</h5>
+                                            </a>
+                                            <a class="side-image" href="/products/cashew">
+                                              <img src="/files/CASHEW IN BOWL.png" alt="Cashew" id="product-nav-image">
+                                           </a>
+                                                <ul class="dropdown">
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        W-180
+                                                    </a>
+                                                    </li>
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        W-210
+                                                    </a>
+                                                    </li>
+                                                    
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        W-450
+                                                    </a>
+                                                    </li>
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        Scroched Wholes
+                                                    </a>
+                                                    </li>
+                                                </ul>
+                                        </div>
+                                        <!-- p3 -->
+                                        <div class="col-3  inner dropdown card-content">
+                                           
+                                            <a class="" href="/products/fig" >
+                                                <h5 class="title">Dried Figs</h5>
+                                            </a>
+                                            <a class="side-image" href="/products/fig">
+                                              <img src="/files/fig in bowl.png" alt="Dried Figs" id="product-nav-image">
+                                           </a>
+                                                
+                                                <ul class="dropdown">
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        Black Mission
+                                                    </a>
+                                                    </li>
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        Brown Turkey
+                                                    </a>
+                                                    </li>
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        Sierra
+                                                    </a>
+                                                    </li>
+                                                   
+                                                    <li class="">
+                                                    <a href="/all-products">
+                                                        Kodota
+                                                    </a>
+                                                    </li>
+                                                </ul>
+                                        </div>
+                                        <div class="col-3  inner dropdown ">
+                                            
+                                            <a class="" href="/products/pistachios">
+                                                <h5 class="title">Pistachios</h5>
+                                            </a>
+                                            <a class="side-image" href="/products/pistachios">
+                                              <img src="/files/Pista in Bowl.png" alt="Pistachios" id="product-nav-image">
+                                           </a>
+                                                
+                                              <ul class="dropdown">
+                                                <li class="">
+                                                  <a href="/all-products">
+                                                    Iranian Round Pistachio
+                                                  </a>
+                                                </li>
+                                                <li class="">
+                                                  <a href="/all-products">
+                                                    Green Skinned Pistachio
+                                                  </a>
+                                                </li>
+                                                <li class="">
+                                                  <a href="/all-products">
+                                                    Roasted & Salted
+                                                  </a>
+                                                </li>
+                                                <li class="">
+                                                  <a href="/all-products">
+                                                    Red Pistachio
+                                                  </a>
+                                              </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="linkGroup linkList prodsubGroup">
+                        <li class="text-center">
+                            <a class="" href="/all-products">
+                                <h6 class="title-underline-view">View All</h6>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+           
+           <!-- About Sub menu -->
+            <div class="dropdownSection" data-dropdown="about">
+                <div class="dropdownContent" style="width: 200px;">
+                    <ul class="linkGroup">
+                        <li>
+                            <a class="linkContainer" href="/about">
+                                <img class="nav-service-icon" src="/files/about.svg" alt="About Noble" title="About Noble">
+                                <h6 class="link-underline mt-1">About Noble</h6>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+            <!-- login submenu -->
+            {% if frappe.session.user != 'Guest' %}
+            <div class="dropdownSection left logged-in" data-dropdown="noble-login">
+                <div class="dropdownContent">
+                    <ul class="linkGroup linkList loginGroup">
+                        <li>
+                            <a class="linkContainer item-about" href="/me" rel="nofollow">
+                                <img class="nav-service-icon" src="/files/account.svg" alt="My Account" title="My Account">
+                                <h6 class="d-inline-block mt-1">{{ _('My Account') }}
+                                </h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="linkContainer item-about " href="/?cmd=web_logout" rel="nofollow">
+                                <img class="nav-service-icon" src="/files/logout.svg" alt="Logout" title="Logout">
+                                <h6 class="d-inline-block mt-1">{{ _('Logout') }}
+                                </h6>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="linkContainer item-about " href="/desk" rel="nofollow">
+                                <img class="nav-service-icon" src="/files/swap.svg" alt="Switch To Desk" title="Switch To Desk">
+                                <h6 class="d-inline-block mt-1" style="font-size: 15px;">{{ _('Switch To Desk') }}
+                                </h6>
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</header>

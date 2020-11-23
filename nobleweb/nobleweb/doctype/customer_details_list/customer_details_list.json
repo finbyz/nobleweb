@@ -1,0 +1,48 @@
+{
+ "creation": "2020-11-10 17:42:18.798071",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "industry",
+  "image"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "customer.industry",
+   "fetch_if_empty": 1,
+   "fieldname": "industry",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Industry",
+   "options": "Industry Type"
+  },
+  {
+   "fetch_from": "customer.image",
+   "fetch_if_empty": 1,
+   "fieldname": "image",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Image"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-11-11 09:48:56.601603",
+ "modified_by": "Administrator",
+ "module": "Nobleweb",
+ "name": "Customer Details List",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

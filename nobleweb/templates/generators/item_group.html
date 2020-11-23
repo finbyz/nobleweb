@@ -1,0 +1,58 @@
+
+{% extends "templates/web.html" %}
+
+{% block header %}<h1>{{ name }}</h1>{% endblock %}
+
+{% block page_content %}
+    <div class="item-group-content container-fluid" itemscope itemtype="http://schema.org/Product">
+        <div>
+            {% if slideshow %}<!-- slideshow -->
+            {% include "templates/includes/slideshow.html" %}
+            {% endif %}
+            {% if description %}<!-- description -->
+            <div class="mb-3" itemprop="description">{{ description or ""}}</div>
+            {% endif %}
+        </div>
+        <div class="row pt-50">
+			{% if items %}
+				{% for i in range(0, page_length) %}
+					{% if items[i] %}
+                        {%- set item = items[i] %}
+                        <div class="col-xl-3 col-md-6 col-lg-6 col-sm-12  my-5 fade-products">
+                            <div class="product-grid {{ loop.cycle('yellow-bg', 'green-bg', 'pink-bg ', 'blue-bg' )}} ">
+                                <div class="row no-gutters">
+                                    <div class="col-md-12">
+                                        <div class="card-body card-image">
+                                            <a class="no-underline" href="/{{ item.route }}">
+                                                <div class="vis-img product-img has-animation has-animation-y animation-ttb scroll">
+                                                        <img class="website-image" src="{{  item.website_image or item.image or 'no-image.jpg'  }}"
+                                                            alt="{{ item.item_name  }}">
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title sub-text d-flex justify-content-center">
+                                        <a class="text-dark" href="/{{ item.route }}">
+                                            {{ item.item_name or item.name }}
+                                        </a>
+                                    </h3>
+                                    <div class=" card-button d-flex justify-content-center">
+                                        <a class="noble-btn t-orange mb-5 mb-sm-0  " href="/{{ item.route }}" >
+                                            <span>{{ _('More details') }}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+					{% endif %}
+                {% endfor %}
+			
+			{% else %}
+			<div class="text-muted">{{ _("No items listed") }}.</div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

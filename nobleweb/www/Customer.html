@@ -1,0 +1,18 @@
+<section class="main-brand">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="slider_brands">
+                <figure>
+                    {% set customer_doc = frappe.get_doc("Customer Details", "Customer Details") %}
+                    {% for i in customer_doc.get({"doctype":"Customer Details List"}) %}
+                    <a href="#">
+                        <img class="grayscale-img" src="{{ i.image }}" alt="{{ i.customer }}" title="{{ i.customer }}">
+                    </a>
+                    {% endfor %}
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="clearfix">
+</div>

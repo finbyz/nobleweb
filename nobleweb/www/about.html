@@ -1,0 +1,45 @@
+
+{{ doc.company_introduction }}
+<!---------------------- Timeline -------------------------- -->
+
+
+{{doc.above_content}}
+<section class="section-timeline-main" id="section-timeline-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="title-underline ">Our <span class="t-orange">{{ doc.company_history_heading }}</span></h2>
+                </div>
+                <div class="main-timeline ">
+                    {% for timeline_time in doc.get({"doctype":"Company History"}) %}
+
+                    <div class="timeline">
+                        <span class="timeline-year nobel-fadeindown ">{{timeline_time.year}}</span>
+                        <a href="#" class="timeline-content nobel-fadeinup ">
+
+                            <div class="timeline-icon nobel-fadeinzoom-out">
+                                <img src="{{ timeline_time.image }}" alt="company" class="img-fluid">
+                            </div>
+
+                            <div class="inner-content ">
+                                <h3 class="title">{{timeline_time.title}}</h3>
+                                <p class="description nobel-fadeinzoom">
+                                    {{timeline_time.highlight}}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{{doc.middle_content}}
+
+
+
+<!-- ---------------------Section Services Start-------------------------- -->

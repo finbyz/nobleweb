@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include nobleweb *.css
+recursive-include nobleweb *.csv
+recursive-include nobleweb *.html
+recursive-include nobleweb *.ico
+recursive-include nobleweb *.js
+recursive-include nobleweb *.json
+recursive-include nobleweb *.md
+recursive-include nobleweb *.png
+recursive-include nobleweb *.py
+recursive-include nobleweb *.svg
+recursive-include nobleweb *.txt
+recursive-exclude nobleweb *.pyc

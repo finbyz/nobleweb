@@ -1,0 +1,80 @@
+<footer class="footer-section gradient-bg"
+  style="background: linear-gradient(145deg, #f4813f , rgba(246, 150, 77, 0)), #f1556a url(https://demo15.atiframe.com/wp-content/uploads/2019/10/circles160.png) right center/cover no-repeat scroll;">
+  <div class="footer">
+    <div class="main-footer section-gap white-text">
+      <div class="container-fluid">
+        <div class="row pt-50">
+          <div class="col-md-5 col-sm-12 col-xs-12">
+            <div class="footer-box">
+              <div class="about-footer">
+                <a href="#">
+                  <img src="/files/noble-logo.png" alt="noble-logo" class="img-fluid" style="max-width: 200px;">
+                </a>
+                <p></p>
+                <br>
+                <p class="white-text">Our dried fruits are sourced from high-quality growers and therefore are premium
+                  in size, taste and flavor. We have a state-of-the-art cleaning and packaging facility to ensure
+                  quality in all our processes. <span class="color">[...]</span>
+                </p>
+                <ul class="white-text" style="margin-top: 50px; padding: 0;">
+                  <li>
+                    <h2>Follow us</h2>
+                  </li>
+                  <li>
+                    <div class="social-network">
+                      <a href="#" class="float-shadow"><img
+                          src="http://blueskytechmage.com/fruitshop/pub/media/wysiwyg/icon-fb.png" alt=""></a>
+                      <a href="#" class="float-shadow"><img
+                          src="http://blueskytechmage.com/fruitshop/pub/media/wysiwyg/icon-tw.png" alt=""></a>
+                      <a href="#" class="float-shadow"><img
+                          src="http://blueskytechmage.com/fruitshop/pub/media/wysiwyg/icon-ig.png" alt=""></a>
+                      <a href="#" class="float-shadow"><img
+                          src="http://blueskytechmage.com/fruitshop/pub/media/wysiwyg/icon-gp.png" alt=""></a>
+                      <a href="#" class="float-shadow"><img
+                          src="http://blueskytechmage.com/fruitshop/pub/media/wysiwyg/icon-pt.png" alt=""></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% include "templates/includes/footer/footer_items.html"%}
+
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="footer-box">
+              <h2>Item Group</h2>
+            <br>
+              <div class="list-instagram side-image">
+                {% set items = frappe.get_all('Item Group', fields=['is_group','image','route','parent_item_group','item_group_name']) %}
+                {% for item in items %}
+                {% if item.parent_item_group == "Products" %}
+
+                <a href="{{ item.route }}">
+                  <img class="grow" src="{{item.website_image or item.image or 'no-image.jpg'  }}"
+                    alt="{{ item.item_name }}">
+                </a>
+
+                {% endif %}
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-fotter">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <p>Copyright © 2017 Fruit Store - All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6 col-sm-12 col-xs-12 d-flex justify-content-end">
+            <p>Developed & Designed by <a href="https://finbyz.tech/">FinByz Tech Pvt. Ltd.</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>

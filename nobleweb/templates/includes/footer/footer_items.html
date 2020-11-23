@@ -1,0 +1,33 @@
+{% for page in footer_items %}
+{%- if page.child_items -%}
+<div class="col-md-3 col-sm-12 col-xs-12 d-flex justify-content-center">
+    <div class="footer-box">
+	{% if not page.parent_label -%}
+		<div data-label='{{ page.label }}'>
+		<a {% if not page.child_items -%} href="{{ (page.url or '')|abs_url }}" {%- endif %}
+		{% if page.child_items %} onclick="return false;" {% endif %}
+		{{ page.target or ''}}>	</a>
+        {%- if page.child_items -%}
+        <!-- title of links -->
+            <h2>{{ page.label }}</h2>
+             <!-- links -->
+            <ul class="dot-img-ul-list before-side-img" >
+                {%- for child in page.child_items -%}
+                    <li>
+                        <a href="{{ child.url | abs_url }}" 
+                                {% if child.target %}target="_blank"{% endif %}>
+                                    {{ child.label }}
+                        </a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+		{%- else -%}
+		<span class="footer-group-label small text-muted">{{ page.label }}<span>
+		</a>
+		{%- endif -%}
+		</div>
+    {%- endif -%}
+    </div>
+</div>
+{%- endif -%}
+{% endfor %}
