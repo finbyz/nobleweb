@@ -15,16 +15,16 @@
                     {% for timeline_time in doc.get({"doctype":"Company History"}) %}
 
                     <div class="timeline">
-                        <span class="timeline-year nobel-fadeindown ">{{timeline_time.year}}</span>
-                        <a href="#" class="timeline-content nobel-fadeinup ">
+                        <span class="timeline-year {{ loop.cycle('nobel-fadeinleft','nobel-fadeinright') }}">{{timeline_time.year}}</span>
+                        <a href="#" class="timeline-content {{ loop.cycle('nobel-fadeinright','nobel-fadeinleft') }} ">
 
-                            <div class="timeline-icon nobel-fadeinzoom-out">
+                            <div class="timeline-icon ">
                                 <img src="{{ timeline_time.image }}" alt="company" class="img-fluid">
                             </div>
 
                             <div class="inner-content ">
                                 <h3 class="title">{{timeline_time.title}}</h3>
-                                <p class="description nobel-fadeinzoom">
+                                <p class="description ">
                                     {{timeline_time.highlight}}
                                 </p>
                             </div>
