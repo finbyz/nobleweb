@@ -1,0 +1,41 @@
+{% extends "templates/web.html" %}
+
+{% block breadcrumbs %}
+{% include "templates/includes/breadcrumbs.html" %}
+{% endblock %}
+
+{% block page_content %}
+
+<div class="my-3 col-12 col-sm-12">
+    <div class="container-fluid">
+        <div class="row pt-50 pt-0">
+            <div class="col-12 col-sm-12">
+                <h3 class="t-orange">{{ doc.job_title }}</h3>
+            </div>
+            <div class="col-12 col-md-4 box bounce-item">
+                <img src="{{ frappe.db.get_value('Job Opening',doc.name,'image') }}" alt="job-opening-img"
+                    class="img-fluid mt-5">
+            </div>
+            <div class="col-12 col-md-8 mt-5">
+
+                <h5 class="text-medium">Key Skills</h5>
+                <p>{{frappe.db.get_value("Job Opening", doc.name,"job_opening_skill")}}</p>
+
+                <h5 class="text-medium">Qualification</h5>
+                <p>{{ qualification }}</p>
+
+                <h5 class="text-medium">Min Experience</h5>
+                <p>{{ min_experience }}</p>
+
+                <h5 class="text-medium">Max Experience</h5>
+                <p>{{ max_experience }}</p>
+
+                <div class="d-md-flex d-sm-block d-block text-center mb-3">
+                    <a class="noble-btn t-orange" href="/application-form?new=1&job_title={{ doc.name }}">
+                        <span> {{ _("Apply Now") }} </span> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

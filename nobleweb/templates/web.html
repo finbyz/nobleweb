@@ -40,21 +40,12 @@
             {% include "templates/includes/form/contact_us.html" %}
         {% endif %}
 
-        <!-- {% if doctype == "Web Page" and name=="index" %}
-        <div class="customer">
-            {% include 'www/Customer.html' %}
-        </div>
-        {% endif %} -->
-
         {% if doctype == "Web Page" and name=="index" %}
         <div class="customer">
             {% include 'www/clients.html' %}
         </div>
         {% endif %}
-
         
-
-
         <div class="page-footer">
             {%- block page_footer -%}{%- endblock -%}
         </div>

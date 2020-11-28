@@ -251,21 +251,6 @@ $(document).ready(function(){
         autoPlay:true
     });
 });
-// $(document).ready(function() {
-//     var Controller = new ScrollMagic.Controller();
-//             var tl = new TimelineMax();
-//                    tl.staggerFrom('.product_gird_4',0.2,{scale:0.1,x:-200, opacity: 0, ease:Circ.easeInOut});
-//                    tl.staggerFrom('.product_gird_3',0.2,{scale:0.1,x:-200, opacity: 0, ease: Circ.easeInOut});
-//                    tl.staggerFrom('.product_gird_2',0.2,{scale:0.1,x:-200, opacity: 0, ease: Circ.easeInOut});
-//                    tl.staggerFrom('.product_gird_1',0.2,{scale:0.1,x:-200, opacity: 0, ease: Circ.easeInOut});
-//                         new ScrollMagic.Scene({
-//                             triggerElement: ".team-area",
-//                             triggerHook:0.3,
-//                         })
-//    .setTween(tl)
-//    .addTo(Controller);
-// });
-
 //*custom
 $(document).ready(function() {
     var scrollController = new ScrollMagic.Controller();
@@ -281,7 +266,7 @@ $(document).ready(function() {
               ease: Linear.easeNone,
             }))
             .addTo(scrollController)
-    })
+        })
         $(".fadeinright").each(function () {
 
         new ScrollMagic.Scene({
@@ -294,10 +279,9 @@ $(document).ready(function() {
                 ease: Linear.easeNone,
             }))
             .addTo(scrollController)
-    })
+        })
 
     $(".nobel-fadeinzoom").each(function () {
-
                    new ScrollMagic.Scene({
                         triggerElement: this,
                         triggerHook: 0.7,
@@ -434,9 +418,22 @@ $(document).ready(function() {
                             ease:Power0.easeNone,
                             }))
                             .addTo(scrollController)
-                    })                           
+                    })  
+            
+                gsap.timeline({
+                        scrollTrigger:{
+                            trigger: "#team",
+                            scrub:0.2,
+                            start: 'top',
+                            end:'+=10000',
+                        }
+                    })
+                    .to('#test', {
+                    rotation:360*2,
+                    duration:1, 
+                    ease:'none',
+                    })  
 });
-
 $(document).ready(function() {
     ScrollTrigger.batch(".fade-products", {
         onEnter: batch => gsap.from(batch ,0.7 , { sacle:0 , opacity:0 , x: -400 , stagger: 0.2, ease:Back.easeOut}),
@@ -453,3 +450,99 @@ $(window).scroll(function() {
         $(".nobleNav").removeClass("active");
     }
 });
+
+//inquiry form & lead creation
+function lead_creation() {
+    frappe.call({
+        method: "nobleweb.api.set_form_data",
+        args: {
+            'lead_name': $('#lead_name').val(),
+            'subject': $('#subject').val(),
+            'msg': $('#msg').val(),
+            'title': '',
+            'email': $('#email').val()
+        },
+        callback: function (r) {
+            $('#lead_name').val('');
+            $('#subject').val('');
+            $('#msg').val('');
+            $('#email').val('');
+            frappe.msgprint("Your interest is inspiring us to do better...<br>Noble Enterprise expert shall reach you shortly");
+        }
+    });
+};
+
+var form = $('#inquiry'),
+    submit = form.find('[name="submit"]');
+
+form.on('submit', function (e) {
+        setTimeout(function () {
+            lead_creation();
+        }, 100);
+    e.preventDefault();
+});
+//validation
+$('form').on('submit',(e)=>{
+    // email validation
+    $(".error").hide();
+        var hasError = false;
+        var emailReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        var emailaddressVal = $("#email").val();
+        
+        if(emailaddressVal == '') {
+            $("#email").after('<span class="error">Please enter your email address.</span>');
+            hasError = true;
+        }
+        else if(!emailReg.test(emailaddressVal)) {
+            $("#email").after('<span class="error">Enter a valid email address.</span>');
+            hasError = true;
+        }
+        if(hasError == true) { return false; }
+
+            // mobile validation
+            var mobile = document.getElementById('msg');
+            var message = document.getElementById('message');
+            var badColor = "#FF9B37";
+
+            if(mobile.value.length!=10){
+                message.style.color = badColor;
+                message.innerHTML = "required 10 digits, match requested format!"
+            }else{  lead_creation(); }
+});
+
+//mobile limitation
+$(document).on('keypress','#msg',function(e){
+    if($(e.target).prop('value').length>=10){
+    if(e.keyCode!=32)
+    {return false} 
+    }
+})
+
+//home page slider 
+$(document).ready(function() {
+  
+    var sliding = false,
+        curSlide = 1,
+        numOfSlides = $(".slider--el").length;
+    
+    $(document).on("click", ".slider--control", function() {
+      if (sliding) return;
+      sliding = true;
+      $(".slider--el").show();
+      $(".slider--el").css("top");
+      $(".slider--el.active").addClass("removed");
+      ($(this).hasClass("right")) ? curSlide++ : curSlide--;
+      if (curSlide < 1) curSlide = numOfSlides;
+      if (curSlide > numOfSlides) curSlide = 1;
+      $(".slider--el-" + curSlide).addClass("next");
+      
+      setTimeout(function() {
+        $(".slider--el.removed").hide();
+        $(".slider--el").removeClass("active next removed");
+        $(".slider--el-" + curSlide).addClass("active");
+        sliding = false;
+      }, 1800);
+    });
+    
+  });
