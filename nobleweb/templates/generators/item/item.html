@@ -6,21 +6,48 @@
 {% block page_content %}
 {% from "nobleweb/templates/includes/macros.html" import product_image %}
 <div class="container">
-        <div class="item-content mt-5">
-            <div class="product-page-content" itemscope itemtype="http://schema.org/Product">
-                <div class="row mb-5 ">
-                    
-                    {% include "templates/generators/item/item_image.html" %}
-                    {% include "templates/generators/item/item_details.html" %}
-                   
-                </div>
+    <div class="item-content mt-5">
+        <div class="product-page-content" itemscope itemtype="http://schema.org/Product">
+            <div class="row mb-5 ">
 
-                {% include "templates/generators/item/item_specifications.html" %}
+                {% include "templates/generators/item/item_image.html" %}
+                {% include "templates/generators/item/item_details.html" %}
 
-                {{ doc.website_content or '' }}
             </div>
+
+            {% include "templates/generators/item/item_specifications.html" %}
+
+            {{ doc.website_content or '' }}
         </div>
+    </div>
 </div>
+<!-- Nutrition List
+     <div class="container mb-3">
+    {% if nutritions %}
+    <a></a>
+    <h3 class="Nutrition_list mb-3 " style="cursor: pointer;">Nutrition Facts</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nutrition Name</th>
+                <th>Value</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc in nutritions %}
+            <tr>
+                <td class="nutritions_name">{{ doc.nutritions_name }}</td>
+                <td class="nutritions_value">{{ doc.value }}</td>
+                <td class="nutrition_percentage">{{ doc.percentage }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {% endif %}
+
+</div> -->
 {% endblock %}
 
 {% block base_scripts %}
@@ -31,8 +58,3 @@
 <script type="text/javascript" src="/assets/js/dialog.min.js"></script>
 <script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
 {% endblock %}
-
-                   
-
-    
-                   

@@ -1,11 +1,26 @@
-<div class="col-md-5 ">
+{% if not slides %}
+	{% set slides = [{'image' : website_image or '/files/no-image.png', 'item_name' : item_name }] %}
+		{% if cover_image %}
+			{% if slides.append({'image': cover_image}) %}{% endif %}
+		{% endif %}
+
+{% else %}
+	{% if slides.append({'image': website_image or '/files/no-image.png' }) %}{% endif %}
+	{% if cover_image %}
+		{% if slides.append({'image': cover_image }) %}{% endif %}
+	{% endif %}
+
+{% endif %}
+
+<div class="col-md-12 col-lg-5 ">
     {% if slides %}
-    
+    <div class="">
     {{ product_image(slides[0].image, 'product-image') }}
-    <div class="item-slideshow">
+    </div>
+    <div class="item-slideshow d-flex justify-content-center"> 
         {% for item in slides %}
-        <img class="item-slideshow-image mt-2 {% if loop.first %}active{% endif %}" src="{{ item.image }}"
-            alt="{{ item.heading }}">
+        <img class="item-slideshow-image mt-2 mx-1 {% if loop.first %}active{% endif %}" src="{{ item.image }}"
+            alt="{{ item.item_name }}">
         {% endfor %}
     </div>
     <!-- Simple image slideshow -->

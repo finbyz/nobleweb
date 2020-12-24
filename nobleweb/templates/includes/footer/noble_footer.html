@@ -7,8 +7,8 @@
           <div class="col-md-5 col-sm-12 col-xs-12">
             <div class="footer-box">
               <div class="about-footer">
-                <a href="#">
-                  <img src="/files/noble-logo.png" alt="noble-logo" class="img-fluid" style="max-width: 200px;">
+                <a href="/">
+                  <img src="/files/final logo - white.png" alt="noble-logo" class="img-fluid" style="max-width: 200px;">
                 </a>
                 <p></p>
                 <br>
@@ -48,10 +48,9 @@
                 {% set items = frappe.get_all('Item Group', fields=['is_group','image','route','parent_item_group','item_group_name']) %}
                 {% for item in items %}
                 {% if item.parent_item_group == "Products" %}
-
-                <a href="{{ item.route }}">
+                <a href="/{{ item.route }}" >
                   <img class="grow" src="{{item.website_image or item.image or 'no-image.jpg'  }}"
-                    alt="{{ item.item_name }}">
+                    alt="{{ item.item_group_name }}">
                 </a>
 
                 {% endif %}

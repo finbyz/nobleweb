@@ -10,8 +10,51 @@
 //         navigationText: ["", ""],
 //         autoPlay: true
 //     });
-// });
+// });{}
 
+//autoplay slider
+$(document).ready(()=>{
+    //running code
+    var slider=$('.slider');
+    var sliderlength=slider.children(('input[type=radio]')).length;
+
+    function reCall(n){
+        $("#page"+n).attr("checked", true);
+        $("#page"+(n-1)).attr("checked", false);
+    }
+    function reLoad(){
+        // console.log('reloading');
+        $.get(location.href).then(function(page) {
+            $(".cstm-container-slider").html($(page).find(".cstm-container-slider").html());
+        })
+    }
+
+    setTimeout(function () {
+        
+        $(".slider--control.right").trigger('click');
+        }, 1000);
+            const printNumbersForEvery9Sec = (n) => {
+                for (let i = 2 ; i <= n ; i++) {
+                    setTimeout(() =>{
+                        reCall(i);
+                            if(i==n){
+                               setTimeout(()=>{ reLoad();},8000);
+                               printNumbersForEvery9Sec(i);
+                            }
+                    }, i * 7000);
+                }
+            }
+        // printNumbersForEvery9Sec(sliderlength);
+    })
+
+$('#slider-module').owlCarousel({
+    items:4,
+    loop:true,
+    margin:10,
+    autoPlay:true,
+    autoplayTimeout:1000,
+    autoplayHoverPause:true,
+});
 /* Navigation bar */
 
 
@@ -352,7 +395,7 @@ $(document).ready(function() {
                         .addTo(scrollController)
                 })
     $(".nobel-fadeinleft").each(function () {
-        
+
                     new ScrollMagic.Scene({
                     triggerElement: this,
                     triggerHook: 0.7,
@@ -405,7 +448,6 @@ $(document).ready(function() {
                                 ease: Sine.easeInOut,
                             }))
                             .addTo(scrollController)
-                         
                     })
     $(".nobel-image-fadeinzoom-out").each(function () {
                         new ScrollMagic.Scene({
@@ -418,8 +460,8 @@ $(document).ready(function() {
                             ease:Power0.easeNone,
                             }))
                             .addTo(scrollController)
-                    })  
-            
+                    }) 
+                   
                 gsap.timeline({
                         scrollTrigger:{
                             trigger: "#team",
@@ -428,7 +470,7 @@ $(document).ready(function() {
                             end:'+=10000',
                         }
                     })
-                    .to('#test', {
+                    .to('#rotateimage', {
                     rotation:360*2,
                     duration:1, 
                     ease:'none',
@@ -440,7 +482,7 @@ $(document).ready(function() {
       });
 })
 $(window).scroll(function() { 
-
+   
     var scroll = $(window).scrollTop();
     
     if (scroll >= 10) {
@@ -481,35 +523,6 @@ form.on('submit', function (e) {
         }, 100);
     e.preventDefault();
 });
-//validation
-$('form').on('submit',(e)=>{
-    // email validation
-    $(".error").hide();
-        var hasError = false;
-        var emailReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-        var emailaddressVal = $("#email").val();
-        
-        if(emailaddressVal == '') {
-            $("#email").after('<span class="error">Please enter your email address.</span>');
-            hasError = true;
-        }
-        else if(!emailReg.test(emailaddressVal)) {
-            $("#email").after('<span class="error">Enter a valid email address.</span>');
-            hasError = true;
-        }
-        if(hasError == true) { return false; }
-
-            // mobile validation
-            var mobile = document.getElementById('msg');
-            var message = document.getElementById('message');
-            var badColor = "#FF9B37";
-
-            if(mobile.value.length!=10){
-                message.style.color = badColor;
-                message.innerHTML = "required 10 digits, match requested format!"
-            }else{  lead_creation(); }
-});
 
 //mobile limitation
 $(document).on('keypress','#msg',function(e){
@@ -519,30 +532,3 @@ $(document).on('keypress','#msg',function(e){
     }
 })
 
-//home page slider 
-$(document).ready(function() {
-  
-    var sliding = false,
-        curSlide = 1,
-        numOfSlides = $(".slider--el").length;
-    
-    $(document).on("click", ".slider--control", function() {
-      if (sliding) return;
-      sliding = true;
-      $(".slider--el").show();
-      $(".slider--el").css("top");
-      $(".slider--el.active").addClass("removed");
-      ($(this).hasClass("right")) ? curSlide++ : curSlide--;
-      if (curSlide < 1) curSlide = numOfSlides;
-      if (curSlide > numOfSlides) curSlide = 1;
-      $(".slider--el-" + curSlide).addClass("next");
-      
-      setTimeout(function() {
-        $(".slider--el.removed").hide();
-        $(".slider--el").removeClass("active next removed");
-        $(".slider--el-" + curSlide).addClass("active");
-        sliding = false;
-      }, 1800);
-    });
-    
-  });

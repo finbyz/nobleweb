@@ -32,20 +32,24 @@
         <div class="page_content">
             {%- block page_content -%}{%- endblock -%}
         </div>
-        {% if doctype == "Web Page" and name=="index" %}
 
+
+        {% if (doctype == "Web Page") and (name =="index" or name == "contact") %}
+        {% include "templates/includes/form/contact_us.html" %}
         {% endif %}
 
-        {% if doctype == "Web Page" and name != "career" and doctype!="Ad Campaign" %}
-            {% include "templates/includes/form/contact_us.html" %}
-        {% endif %}
+        <!-- {% if doctype == "Web Page" and name=="index" %}
+        <div class="customer">
+            {% include 'www/Customer.html' %}
+        </div>
+        {% endif %} -->
 
         {% if doctype == "Web Page" and name=="index" %}
         <div class="customer">
             {% include 'www/clients.html' %}
         </div>
         {% endif %}
-        
+
         <div class="page-footer">
             {%- block page_footer -%}{%- endblock -%}
         </div>

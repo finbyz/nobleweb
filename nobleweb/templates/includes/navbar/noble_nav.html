@@ -1,5 +1,4 @@
 <header class="nobleNav noDropdownTransition">
-
     <ul class="navRoot">
         <!-- logo -->
         <li class="navSection logo mt-2 ml-2">
@@ -21,9 +20,6 @@
             <a class="rootLink" href="/contact">
                 Contact
             </a>
-            <!-- <a class="rootLink" href="/inquiry?new=1">
-                Inquiry
-            </a> -->
         </li>
         <li class="navSection secondary">
             {% if not hide_login %}
@@ -95,7 +91,7 @@
                                 {% for item in items %}
                                 {% if item.parent_item_group == "Products" %}
                                 <li class="p-3">
-                                    <a href="{{ item.route }}" class="link-underline p-1">
+                                    <a href="/{{ item.route }}" class="link-underline p-1">
                                         {{  item.item_group_name or item.name }}
                                     </a>
                                 </li>
@@ -154,7 +150,6 @@
                 </nav>
             </div>
         </li>
-
     </ul>
 
     <div class="dropdownRoot">
@@ -179,16 +174,16 @@
                                         {% if item.parent_item_group == "Products" %}
                                         <!-- p1 -->
                                         <div class="col-3  inner dropdown">
-                                            <a class="" href="{{ item.route }}">
+                                            <a class="" href="/{{ item.route }}">
                                                 <h5 class="title d-flex justify-content-center">
                                                     {{  item.item_group_name or item.name }}
                                                 </h5>
                                             </a>
-                                            <a class="side-image d-flex justify-content-center" href="{{ item.route }}">
+                                            <a class="side-image d-flex justify-content-center" href="/{{ item.route }}">
                                                 <img src="{{item.website_image or item.image or 'no-image.jpg'  }}"
                                                     alt="{{ item.item_group_name }}" id="product-nav-image">
                                             </a>
-                                            <ul class="dropdown mb-3">
+                                            <!-- <ul class="dropdown mb-3">
                                                 {% set g = item.item_group_name %}
                                                 {% for item in items %}
                                                 {% if item.parent_item_group == g %}
@@ -199,7 +194,7 @@
                                                 </li>
                                                 {% endif %}
                                                 {% endfor %}
-                                            </ul>
+                                            </ul> -->
                                         </div>
                                         {% endif %}
                                         {% endfor %}
