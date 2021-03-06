@@ -1,25 +1,28 @@
 {% extends "templates/web.html" %}
 
-{% block title %}{{ _('Products') }}{% endblock %}
+{% block title %} Packaging {% endblock %}
 {% block header %}
-<h1>{{ _('Products') }}</h1>
+<h1>Packaging</h1>
 {% endblock header %}
 
 {% block page_content %}
 <div class="container-fluid">
-    <div class="row pt-50 pb-0">
-            <div class="col-lg-6 col-sm-8">
-                <div class="input-group input-group-sm mb-3 search">
+    <div class="row p-lr-50 pb-0 mt-5">
+            <div class="col-lg-6 col-8">
+                <div class="input-group input-group-sm  search">
                     <input type="search" class="form-control search-bar searchTerm" placeholder="{{_('Search')}}" aria-label="{{_('Product Search')}}"
-                        aria-describedby="product-search" value="">
+                        aria-describedby="product-search" value="" style="margin-top: 0px;">
                 </div>
             </div>
-        <div class="col-4 pl-0">
-            <button class="btn btn-light btn-sm btn-block d-md-none" type="button" data-toggle="collapse"
+        <div class="col-4 pl-0 d-flex justify-content-center mt-1">
+            {% if frappe.form_dict.start or frappe.form_dict.field_filters or frappe.form_dict.attribute_filters or frappe.form_dict.search %}
+            <a class="mb-3 d-inline-block clear-filter" href="/all-products">{{ _('Clear filters') }}</a>
+            {% endif  %}
+            <!-- <button class="btn btn-light btn-sm btn-block d-md-none" type="button" data-toggle="collapse"
                 data-target="#product-filters" aria-expanded="false" aria-controls="product-filters"
                 style="white-space: nowrap;">
                 {{ _('Toggle Filters') }}
-            </button>
+            </button> -->
         </div>
     </div>
 </div>
@@ -34,11 +37,7 @@
                 {% include "erpnext/www/all-products/not_found.html" %}
                 {% endif %}
     <div class="col-12 order-1 col-md-2 order-md-2 d-flex justify-content-center">
-
-        {% if frappe.form_dict.start or frappe.form_dict.field_filters or frappe.form_dict.attribute_filters or frappe.form_dict.search %}
-        <a class="mb-3 d-inline-block" href="/all-products">{{ _('Clear filters') }}</a>
-        {% endif  %}
-
+       
         <div class="collapse d-md-block" id="product-filters">
             {% for field_filter in field_filters %}
             {%- set item_field =  field_filter[0] %}
@@ -119,7 +118,7 @@
         </script>
     </div>
 </div>
-<div class="container-fluid ml-5 mb-5">
+<div class="container-fluid  mb-5">
     <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
              {% if frappe.form_dict.start|int > 0 %}

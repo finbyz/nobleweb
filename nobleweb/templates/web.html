@@ -6,11 +6,11 @@
 {% macro main_content() %}
 <div class="page-content-wrapper">
     <!-- breadcrumbs -->
-    <div class="page-breadcrumbs">
+    <!-- <div class="page-breadcrumbs">
         {% block breadcrumbs %}
         {% include 'templates/includes/breadcrumbs.html' %}
         {% endblock %}
-    </div>
+    </div> -->
 
     {% block page_container %}
     <main>
@@ -30,6 +30,9 @@
 
 
         <div class="page_content">
+            {% if name != "index" %}
+            {% include "templates/includes/noble-banner.html" %}
+            {% endif %}
             {%- block page_content -%}{%- endblock -%}
         </div>
 
@@ -44,11 +47,7 @@
         </div>
         {% endif %} -->
 
-        {% if doctype == "Web Page" and name=="index" %}
-        <div class="customer">
-            {% include 'www/clients.html' %}
-        </div>
-        {% endif %}
+    
 
         <div class="page-footer">
             {%- block page_footer -%}{%- endblock -%}

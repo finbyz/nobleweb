@@ -11,6 +11,11 @@ app_color = "grey"
 app_email = "varaiyaniravn@gmail.com"
 app_license = "MIT"
 
+# override bcz getting 404 error in thirt party files
+from frappe.website import render
+from nobleweb.api import add_preload_headers as my_add_preload_headers
+render.add_preload_headers = my_add_preload_headers
+
 # Includes in <head>
 # ------------------
 

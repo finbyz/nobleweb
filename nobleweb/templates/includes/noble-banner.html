@@ -1,0 +1,28 @@
+{% if image and doctype not in ["Item","Item Group","Job Opening"] %}
+<!-- <div style=" background-image: url({{ image }});" class="banner-allPage"> -->
+<div style="{% if path == "contact_us"%} background-image: url(/files/contactUsImage.jpg);{% else %} background-image: url(/files/common_banner.png);{% endif %}" class="banner-allPage">
+    <div>
+        <div class=" banner-allPage-title">
+            <div class="banner-wrapper">
+                <h1 class="t-white "> {{ title }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% else%}
+<div style="{% if title == "Products" or doctype == "Item Group" or path == "all-products"%} background-image: url(/files/product_banner.jpg);{% elif doctype == "Web Page"%} background-image: url(/files/background_image_packing.png); {% elif path == "about"%} background-image: url(/files/sun.png);{% else %}background-image: url(/files/common_banner.png);{% endif %}" class="banner-allPage">
+    <div>
+        <div class=" banner-allPage-title">
+            <div class="banner-wrapper">
+                <h1 class="t-white banner-border"> {{ title }} </h1>
+                <div class="page-breadcrumbs">
+                    {% block breadcrumbs %}
+                    {% include 'templates/includes/breadcrumbs.html' %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+

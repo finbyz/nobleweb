@@ -1,59 +1,37 @@
-//happy clients
-// $(document).ready(function () {
-//     $("#clients-slider").owlCarousel({
-//         items: 3,
-//         itemsDesktop: [1199, 2],
-//         itemsDesktopSmall: [979, 2],
-//         itemsTablet: [767, 1],
-//         pagination: false,
-//         navigation: true,
-//         navigationText: ["", ""],
-//         autoPlay: true
-//     });
-// });{}
+
+$(document).ready(() => {
+    if ($('#noble_logo').attr("src") == "/files/transparent_nobel_logo.png") {
+        $('#noble_logo').addClass('logo_width');
+    } else {
+        $('#noble_logo').removeClass('logo_width');
+    }
+    $(window).bind('load scroll', function () {
+        var scroll = $(window).scrollTop();
+        if (scroll > 300) {
+            $('.nobleNav').addClass('animated');
+            $(".nobleNav").addClass("active");
+            var newsrc = "/files/nobel_color_logo.png";
+            $('#noble_logo').attr("src", newsrc);
+            $('#noble_logo').removeClass('logo_width');
+        }
+        else {
+            $(".nobleNav").removeClass("active");
+            $('.nobleNav').removeClass('animated');
+            var oldsrc = "/files/transparent_nobel_logo.png";
+            $('#noble_logo').attr("src", oldsrc);
+            $('#noble_logo').addClass('logo_width');
+        }
+    })
+})
 
 //autoplay slider
-$(document).ready(()=>{
-    //running code
-    var slider=$('.slider');
-    var sliderlength=slider.children(('input[type=radio]')).length;
-
-    function reCall(n){
-        $("#page"+n).attr("checked", true);
-        $("#page"+(n-1)).attr("checked", false);
-    }
-    function reLoad(){
-        // console.log('reloading');
-        $.get(location.href).then(function(page) {
-            $(".cstm-container-slider").html($(page).find(".cstm-container-slider").html());
-        })
-    }
-
-    setTimeout(function () {
-        
-        $(".slider--control.right").trigger('click');
-        }, 1000);
-            const printNumbersForEvery9Sec = (n) => {
-                for (let i = 2 ; i <= n ; i++) {
-                    setTimeout(() =>{
-                        reCall(i);
-                            if(i==n){
-                               setTimeout(()=>{ reLoad();},8000);
-                               printNumbersForEvery9Sec(i);
-                            }
-                    }, i * 7000);
-                }
-            }
-        // printNumbersForEvery9Sec(sliderlength);
-    })
-
 $('#slider-module').owlCarousel({
-    items:4,
-    loop:true,
-    margin:10,
-    autoPlay:true,
-    autoplayTimeout:1000,
-    autoplayHoverPause:true,
+    items: 4,
+    loop: true,
+    margin: 10,
+    autoPlay: true,
+    autoplayTimeout: 1000,
+    autoplayHoverPause: true,
 });
 /* Navigation bar */
 
@@ -117,11 +95,9 @@ function nobleNavDropdowns(e) {
 /* Starting code */
 var Strut = {
     queryArray: function (e, t) {
-        // console.log(e,t);
         return t || (t = document.body), Array.prototype.slice.call(t.querySelectorAll(e))
     },
     ready: function (e) {
-        // console.log(e);
         document.addEventListener("DOMContentLoaded", e)
     }
 };
@@ -131,7 +107,6 @@ Strut.supports = {
     pointerEvents: function () {
 
         var e = document.createElement("a").style;
-        // console.log(e);
         return e.cssText = "pointer-events:auto", e.pointerEvents === "auto"
 
     }(),
@@ -284,20 +259,22 @@ $('.tabanchor').on('mouseenter', function (e) {
     $(getTab).addClass('active')
     e.preventDefault();
 })
-$(document).ready(function(){
+$(document).ready(function () {
     $("#happy-customer-slider").owlCarousel({
-        items:1,
-        itemsDesktop:[1000,1],
-        itemsDesktopSmall:[979,1],
-        itemsTablet:[768,1],
+        items: 1,
+        itemsDesktop: [1000, 1],
+        itemsDesktopSmall: [979, 1],
+        itemsTablet: [768, 1],
         pagination: false,
-        autoPlay:true
+        autoPlay: true
     });
 });
 //*custom
-$(document).ready(function() {
+$(document).ready(function () {
     var scrollController = new ScrollMagic.Controller();
-     $(".fadeinleft").each(function () {
+
+
+    $(".fadeinleft").each(function () {
 
         new ScrollMagic.Scene({
             triggerElement: this,
@@ -306,11 +283,11 @@ $(document).ready(function() {
             .setTween(TweenMax.from(this, 0.9, {
                 x: 50,
                 opacity: 0,
-              ease: Linear.easeNone,
+                ease: Linear.easeNone,
             }))
             .addTo(scrollController)
-        })
-        $(".fadeinright").each(function () {
+    })
+    $(".fadeinright").each(function () {
 
         new ScrollMagic.Scene({
             triggerElement: this,
@@ -322,176 +299,180 @@ $(document).ready(function() {
                 ease: Linear.easeNone,
             }))
             .addTo(scrollController)
-        })
+    })
 
     $(".nobel-fadeinzoom").each(function () {
-                   new ScrollMagic.Scene({
-                        triggerElement: this,
-                        triggerHook: 0.7,
-                    })
-                .setTween(TweenMax.from(this, 0.7, {
-                        
-                scale:1,
+        new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.7,
+        })
+            .setTween(TweenMax.from(this, 0.7, {
+
+                scale: 1,
                 opacity: 1,
                 ease: Power3.easeInOut,
-                }))
+            }))
             .addTo(scrollController)
-        })
+    })
     $(".nobel-fadeinzoom-out").each(function () {
-        
-                new ScrollMagic.Scene({
-                     triggerElement: this,
-                    triggerHook: 0.8,
-                    })
-                    .setTween(TweenMax.from(this, 0.5, {
-            
-                scale:0.1,
+
+        new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.8,
+        })
+            .setTween(TweenMax.from(this, 0.5, {
+
+                scale: 0.1,
                 opacity: 0,
                 ease: Power3.easeInOut,
-                }))
-                .addTo(scrollController)
-            })
+            }))
+            .addTo(scrollController)
+    })
     $(".nobel-fadeinup").each(function () {
-        
-                new ScrollMagic.Scene({
-                triggerElement: this,
-                triggerHook: 0.9,
-                })
-                    .setTween(TweenMax.from(this, 1.3, {
-                        y: 45,
-                        opacity: 0,
-                        ease:Power1.easeOut,
-                    }))
-                    .addTo(scrollController)
-                })
-        
-     $(".nobel-fadeindown").each(function () {
-        
-                    ScrollMagic.Scene({
-                    triggerElement: this,
-                    triggerHook: 0.9,
-                    })
-                        .setTween(TweenMax.from(this, 1.3, {
-                            y: -45,
-                            opacity: 0,
-                            ease: Power1.easeOut,
-                        }))
-                        .addTo(scrollController)
-                })
-        
-        // text Animation
-        
-    $(".nobel-fadeinright").each(function () {
-        
-                    new ScrollMagic.Scene({
-                    triggerElement: this,
-                    triggerHook: 0.7,
-                    })
-                        .setTween(TweenMax.from(this, 0.8, {
-                            x: 80,
-                            opacity: 0,
-                            ease: Power1.easeOut,
-                        }))
-                        .addTo(scrollController)
-                })
-    $(".nobel-fadeinleft").each(function () {
 
-                    new ScrollMagic.Scene({
-                    triggerElement: this,
-                    triggerHook: 0.7,
-                    })
-                        .setTween(TweenMax.staggerFrom(this, 0.8, {
-                            x: -80,
-                            opacity: 0,
-                            ease: Power1.easeOut,
-                        }))
-                        .addTo(scrollController)
-                    })
-        
-                    // image animation
-                    $(".nobel-image-fadeinleft").each(function () {
-        
-                        new ScrollMagic.Scene({
-                        triggerElement: this,
-                        triggerHook: 0.9,
-                        })
-                            .setTween(TweenMax.from(this, 1.1, {
-                                x: -80,
-                                opacity: 0,
-                                ease: Sine.easeInOut,
-                            }))
-                            .addTo(scrollController)
-                        })
-                $(".nobel-image-fadeinup").each(function () {
-        
-                    new ScrollMagic.Scene({
-                    triggerElement: this,
-                    triggerHook: 0.9,
-                    })
-                        .setTween(TweenMax.from(this, 1.1, {
-                            y: 75,
-                            opacity: 0,
-                            ease: Sine.easeInOut,
-                        }))
-                        .addTo(scrollController)
-                    })
-                 
-     //about us   
+        new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.9,
+        })
+            .setTween(TweenMax.from(this, 1.3, {
+                y: 45,
+                opacity: 0,
+                ease: Power1.easeOut,
+            }))
+            .addTo(scrollController)
+    })
+
+    $(".nobel-fadeindown").each(function () {
+
+        ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.9,
+        })
+            .setTween(TweenMax.from(this, 1.3, {
+                y: -45,
+                opacity: 0,
+                ease: Power1.easeOut,
+            }))
+            .addTo(scrollController)
+    })
+
+    // text Animation
+
+    $(".nobel-fadeinright").each(function () {
+
+        new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.7,
+        })
+            .setTween(TweenMax.from(this, 0.8, {
+                x: 80,
+                opacity: 0,
+                ease: Power1.easeOut,
+            }))
+            .addTo(scrollController)
+    })
+    $(".nobel-fadeinleft").each(function () {
+        new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.7,
+        })
+            .setTween(TweenMax.staggerFrom(this, 0.8, {
+                x: -80,
+                opacity: 0,
+                ease: Power1.easeOut,
+            }))
+            .addTo(scrollController)
+    })
+
+    // image animation
+    $(".nobel-image-fadeinleft").each(function () {
+
+        new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.9,
+        })
+            .setTween(TweenMax.from(this, 1.1, {
+                x: -80,
+                opacity: 0,
+                ease: Sine.easeInOut,
+            }))
+            .addTo(scrollController)
+    })
+    $(".nobel-image-fadeinup").each(function () {
+
+        new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.9,
+        })
+            .setTween(TweenMax.from(this, 1.1, {
+                y: 75,
+                opacity: 0,
+                ease: Sine.easeInOut,
+            }))
+            .addTo(scrollController)
+    })
+
+    //effect
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: ".vision-mission-img ",
+            scrub: 0.2,
+            start: 'top',
+            end: '+=10000',
+        }
+    })
+        .to('.animate-image', {
+            rotation: 360 * 4,
+            duration: 1,
+            ease: Linear.easeNone,
+        })
+
+    //about us   
     $(".nobel-image-fadeindown").each(function () {
-                        new ScrollMagic.Scene({
-                        triggerElement: this,
-                        triggerHook: 1,
-                        })
-                            .setTween(TweenMax.staggerFrom(this, 0.8, {
-                                y: -70,
-                                opacity: 0,
-                                ease: Sine.easeInOut,
-                            }))
-                            .addTo(scrollController)
-                    })
+        new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 1,
+        })
+            .setTween(TweenMax.staggerFrom(this, 0.8, {
+                y: -70,
+                opacity: 0,
+                ease: Sine.easeInOut,
+            }))
+            .addTo(scrollController)
+    })
     $(".nobel-image-fadeinzoom-out").each(function () {
-                        new ScrollMagic.Scene({
-                        triggerElement: this,
-                        triggerHook: 1,
-                        })
-                        .setTween(TweenMax.from(this, 1.2, {
-                            scale:0.1,
-                            opacity: 0,
-                            ease:Power0.easeNone,
-                            }))
-                            .addTo(scrollController)
-                    }) 
-                   
-                gsap.timeline({
-                        scrollTrigger:{
-                            trigger: "#team",
-                            scrub:0.2,
-                            start: 'top',
-                            end:'+=10000',
-                        }
-                    })
-                    .to('#rotateimage', {
-                    rotation:360*2,
-                    duration:1, 
-                    ease:'none',
-                    })  
+        new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 1,
+        })
+            .setTween(TweenMax.from(this, 1.2, {
+                scale: 0.1,
+                opacity: 0,
+                ease: Power0.easeNone,
+            }))
+            .addTo(scrollController)
+    })
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: "#team",
+            scrub: 0.2,
+            start: 'top',
+            end: '+=10000',
+        }
+    })
+        .to('#rotateimage', {
+            rotation: 360 * 2,
+            duration: 1,
+            ease: 'none',
+        })
+    //effect
 });
-$(document).ready(function() {
+$(document).ready(function () {
     ScrollTrigger.batch(".fade-products", {
-        onEnter: batch => gsap.from(batch ,0.7 , { sacle:0 , opacity:0 , x: -400 , stagger: 0.2, ease:Back.easeOut}),
-      });
+        onEnter: batch => gsap.from(batch, 0.7, { sacle: 0, opacity: 0, x: -400, stagger: 0.2, ease: Back.easeOut }),
+    });
 })
-$(window).scroll(function() { 
-   
-    var scroll = $(window).scrollTop();
-    
-    if (scroll >= 10) {
-        $(".nobleNav").addClass("active");
-    }
-    else {
-        $(".nobleNav").removeClass("active");
-    }
-});
 
 //inquiry form & lead creation
 function lead_creation() {
@@ -518,17 +499,88 @@ var form = $('#inquiry'),
     submit = form.find('[name="submit"]');
 
 form.on('submit', function (e) {
-        setTimeout(function () {
-            lead_creation();
-        }, 100);
+    setTimeout(function () {
+        lead_creation();
+    }, 100);
     e.preventDefault();
 });
-
 //mobile limitation
-$(document).on('keypress','#msg',function(e){
-    if($(e.target).prop('value').length>=10){
-    if(e.keyCode!=32)
-    {return false} 
+$(document).on('keypress', '#msg', function (e) {
+    if ($(e.target).prop('value').length >= 10) {
+        if (e.keyCode != 32) { return false }
     }
 })
+$(document).ready(function () {
+    var sliding = false,
+        curSlide = 1,
+        numOfSlides = $(".slider--el").length;
 
+    function moveSlider(slider_direction) {
+        if (sliding) return;
+        sliding = true;
+        $(".slider--el").show();
+        $(".slider--el").css("top");
+        $(".slider--el.active").addClass("removed");
+        slider_direction == 'right' ? curSlide++ : curSlide--;
+        if (curSlide < 1) curSlide = numOfSlides;
+        if (curSlide > numOfSlides) curSlide = 1;
+        $(".slider--el-" + curSlide).addClass("next");
+        setTimeout(function () {
+            $(".slider--el").hide();
+            $(".slider--el").removeClass("active next removed");
+            $(".slider--el-" + curSlide).addClass("active");
+            sliding = false;
+        }, 1800);
+    }
+    setInterval(function () {
+        moveSlider('right');
+    }, 7000);
+    $('.slider--control.right').on("click", () => {
+        moveSlider('right');
+    })
+    $('.slider--control.left').on("click", () => {
+        moveSlider('left');
+    })
+});
+$(document).ready(() => {
+    const related_item_name = $("#related-Item").children().length;
+    if (related_item_name == 0) {
+        $("#related-title").css("display", "none");
+    } else {
+        $("#related-title").css("display", "block");
+    }
+});
+// related item on all pages 
+$('#related-Item').owlCarousel({
+    items: 4,
+    loop: true,
+    margin: 10,
+    autoPlay: true,
+    autoWidth: true,
+    autoplayTimeout: 500,
+    autoplayHoverPause: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        768: {
+            items: 2
+        },
+        970: {
+            items: 4
+        },
+        1200: {
+            items: 4
+        }
+    }
+});
+//alignment of item card in owl-carousel
+$(document).ready(() => {
+    var same_height = -1;
+    $('.owl-responsive').each(function () {
+        same_height = same_height > $('.owl-responsive').height() ? same_height : $('.owl-responsive').height();
+    });
+    $('.owl-responsive').each(function () {
+        $('.owl-responsive').height(same_height);
+    });
+});

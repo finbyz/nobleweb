@@ -1,12 +1,11 @@
-
 <div class="my-5 col-xl-3 col-md-6 col-lg-4 col-sm-6 col-12 fade-products">
-	<div class="product-grid card-content {{ loop_.cycle('yellow-bg', 'green-bg', 'pink-bg ', 'blue-bg' ) }}" style="margin-bottom: 0px;">
+	<div class="product-grid all-prd-bg-none card-content {{ loop_.cycle('yellow-bg', 'green-bg', 'pink-bg ', 'blue-bg' ) }}" style="margin-bottom: 0px;">
 		<div class="row no-gutters">
 			<div class="col-md-12">
 				<div class="card-body card-image">
 					<a class="no-underline" href="/{{ item.route }}">
 						<div class="vis-img product-img has-animation has-animation-y animation-ttb scroll side-image">
-								<img class="website-image" src="{{ item.website_image or item.image  or '/files/no-image.png'  }}" alt="{{ item.item_name  }}">
+								<img class="website-image" src="{{ item.website_image or item.image  or '/files/no-image.png'  }}" alt="{{ item.item_name  }}" width="225">
 						</div>
 					</a>
 				</div>
@@ -26,5 +25,3 @@
 		</div>
 	</div>
 </div>
-<!-- change -->
-

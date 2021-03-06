@@ -13,3 +13,6 @@ def set_form_data(lead_name, subject , msg, title, email):
 	data.email_id = email
 	data.save(ignore_permissions=True)
 	frappe.db.commit()
+
+def add_preload_headers(response):
+	pass

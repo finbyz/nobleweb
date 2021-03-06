@@ -4,24 +4,31 @@
         <li class="navSection logo mt-2 ml-2">
             <div class="noble-logo">
                 <a href="/">
-                    <img src="/files/noble-logo.png" id="noble_logo" alt="Noble Enterprise" title="Noble Enterprise"
-                        style="transform: translate(0%, 0%);">
+                    <img data-pagespeed-no-defer src="/files/transparent_nobel_logo.png" id="noble_logo"
+                        alt="Noble Enterprise" title="Noble Enterprise" style="transform: translate(0%, 0%);"
+                        width="170" />
                 </a>
             </div>
         </li>
         <li class="navSection primary p-2">
             <a class="rootLink" href="/"> Home </a>
-            <a class="rootLink hasDropdown" data-dropdown="about" href="/about">
-                Company
+            <a class="rootLink" href="/about">
+                About Us
             </a>
-            <a class="rootLink hasDropdown" data-dropdown="product">
+            <a class="rootLink hasDropdown" data-dropdown="product" href="#">
                 Products
             </a>
-            <a class="rootLink" href="/contact">
-                Contact
+            <a class="rootLink hasDropdown" data-dropdown="Packaging" href="#">
+                Packaging
+            </a>
+            <!-- <a class="rootLink" data-dropdown="Careers" href="/jobs">
+                Careers
+            </a> -->
+            <a class="rootLink" href="/contact_us">
+                Contact Us
             </a>
         </li>
-        <li class="navSection secondary">
+        <li class="navSection secondary p-2">
             {% if not hide_login %}
             <a href="/login" class="rootLink btn-login-area mt-1">{{ _("Login") }}</a> {% endif %}
 
@@ -46,33 +53,16 @@
                 <nav id="navsidebar" class="vh-100">
                     <!-- navsidebar Links -->
                     <div class="d-flex justify-content-center p-2">
-                        <img src="/files/noble-logo.png" alt="logo" title="Logo" style="
-                        width: 260px;">
+                        <img src="/files/noble-logo.png" alt="logo" title="Logo" width="150" style="
+                        width: 150px;">
                     </div>
                     <ul class="list-unstyled components">
                         <li class="p-3">
                             <a href="/">Home</a>
                         </li>
                         <li class="p-3">
-                            <a href="/about" data-ls="aboutsubmenu" class="go-tosub-menu" data-toggle="collapse"
-                                aria-expanded="false">
-                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
-                                    alt="Left Arrow" title="Web App Development" height="15" width="15">
-                                Company</a>
-                            <img data-ls="aboutsubmenu" src="/files/right-arrow-nav.svg"
-                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
-                            <ul class="collapse list-unstyled ml-5" id='aboutsubmenu'>
-
-                                <li class="p-3">
-                                    <a href="/about"> <img class="nav-service-icon" src="/files/about.svg"
-                                            alt="About Noble" title="About Noble">About Noble</a>
-                                </li>
-
-                                <li class="p-3">
-                                    <a href="/jobs"> <img class="nav-service-icon" src="/files/job-search.svg"
-                                            alt="Job Opening" title="Job Opening">Job Opening</a>
-                                </li>
-                            </ul>
+                            <a href="/about">
+                                About Us</a>
                         </li>
 
                         <li class="p-3">
@@ -86,27 +76,54 @@
                                 class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
 
                             <ul class="collapse list-unstyled ml-5" id='products'>
-                                {% set items = frappe.get_all('Item Group', fields=['is_group','image','route','parent_item_group','item_group_name']) %}
-
+                                {% set items = frappe.get_all('Item Group', order_by="priority" , limit = 14 ,
+                                fields=['is_group','image','website_image','route','parent_item_group','item_group_name','content_link'])
+                                %}
                                 {% for item in items %}
                                 {% if item.parent_item_group == "Products" %}
                                 <li class="p-3">
-                                    <a href="/{{ item.route }}" class="link-underline p-1">
-                                        {{  item.item_group_name or item.name }}
+                                    <a href="/{{ item.content_link|replace(' ','')|lower}}" class="link-underline p-1">
+                                        {{ item.item_group_name or item.name }}
                                     </a>
                                 </li>
-
                                 {% endif %}
                                 {% endfor %}
                             </ul>
 
                         </li>
                         <li class="p-3">
-                            <a href="/contact">Contact</a>
+                            <a href="/product" data-ls="Packaging" data-toggle="collapse" aria-expanded="false"
+                                class="go-tosub-menu">
+                                <img class="left-arrow nav-service-icon d-none" src="/files/left-arrow-nav.svg"
+                                    alt="Left Arrow" title="Web App Development" height="15" width="15">
+                                Packaging
+                            </a>
+                            <img data-ls="Packaging" src="/files/right-arrow-nav.svg"
+                                class="go-tosub-menu ml-5 float-right mt-2" alt="right-arrow" height="15" width="15">
+
+                            <ul class="collapse list-unstyled ml-5" id='Packaging'>
+                                {% set items = frappe.get_all('Item Group',
+                                order_by="priority",fields=['is_group','image','website_image','route','parent_item_group','item_group_name'],
+                                filters={'website_image': ('!=',''),'image':('!=','')} , limit = 14 ) %}
+                                {% for item in items %}
+                                {% if item.parent_item_group == "Products" %}
+                                <li class="p-3">
+                                    <a href="/{{ item.route }}" class="link-underline p-1">
+                                        {{ item.item_group_name or item.name }}
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <!-- <li class="p-3">
+                            <a href="/jobs">Careers</a>
+                        </li> -->
+                        <li class="p-3">
+                            <a href="/contact_us">Contact Us</a>
                         </li>
                         {% if not hide_login %}
                         <li class="btn-login-area">
-
                             <a href="/login">{{ _("Login") }}</a>
                         </li>
                         {% endif %}
@@ -159,45 +176,39 @@
         <div class="dropdownArrow"></div>
         <div class="dropdownContainer">
             <!-- Product SUb menu -->
-            <div class="dropdownSection left industryGroup" data-dropdown="product">
+            <div class="dropdownSection left industryGroup" data-dropdown="Packaging">
                 <!-- with button -->
                 <div class="dropdownContent dropdownContent-product">
-                    <!-- products list -->
-                    <div class="linkGroup ">
-                        <div class="industry-group pt-3 ">
-                            <div class="industry-group-sub ">
-                                <div class="container">
-                                    <div class="row">
-                                        {% set items = frappe.get_all('Item Group', fields=['is_group','image','route','parent_item_group','item_group_name']) %}
-
-                                        {% for item in items %}
-                                        {% if item.parent_item_group == "Products" %}
-                                        <!-- p1 -->
-                                        <div class="col-3  inner dropdown">
-                                            <a class="" href="/{{ item.route }}">
-                                                <h5 class="title d-flex justify-content-center">
-                                                    {{  item.item_group_name or item.name }}
-                                                </h5>
-                                            </a>
-                                            <a class="side-image d-flex justify-content-center" href="/{{ item.route }}">
-                                                <img src="{{item.website_image or item.image or 'no-image.jpg'  }}"
-                                                    alt="{{ item.item_group_name }}" id="product-nav-image">
-                                            </a>
-                                            <!-- <ul class="dropdown mb-3">
-                                                {% set g = item.item_group_name %}
-                                                {% for item in items %}
-                                                {% if item.parent_item_group == g %}
-                                                <li class="">
-                                                    <a href="{{ item.route }}">
-                                                        {{  item.item_group_name or item.name }}
-                                                    </a>
-                                                </li>
-                                                {% endif %}
-                                                {% endfor %}
-                                            </ul> -->
+                    <!-- packagin list -->
+                    <div class="background">
+                        <div class="linkGroup ">
+                            <div class="industry-group ">
+                                <div class="industry-group-sub ">
+                                    <div class="container">
+                                        <div class="row">
+                                            {% set items = frappe.get_all('Item Group',
+                                            order_by="priority",fields=['is_group','image','website_image','route','parent_item_group','item_group_name'],
+                                            filters={'website_image': ('!=',''),'image':('!=','')} , limit = 14 ) %}
+                                            {% for item in items %}
+                                            {% if item.parent_item_group == "Products" %}
+                                            <!-- p1 -->
+                                            <div class="col-3  inner dropdown mb-4">
+                                                <a class="" href="/{{ item.route }}">
+                                                    <h5 class="title d-flex justify-content-center" style="margin-bottom: 0px;">
+                                                        {{ item.item_group_name or item.name }}
+                                                    </h5>
+                                                </a>
+                                                <a class="side-image d-flex justify-content-center"
+                                                    href="/{{ item.route }}">
+                                                    <img data-pagespeed-no-defer
+                                                        src="{{item.image or item.website_image or 'no-image.jpg'  }}"
+                                                        width="150" alt="{{ item.item_group_name }}"
+                                                        id="product-nav-image" />
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            {% endfor %}
                                         </div>
-                                        {% endif %}
-                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -206,26 +217,55 @@
                     <ul class="linkGroup linkList prodsubGroup">
                         <li class="text-center ">
                             <a class="" href="/all-products">
-                                <h6 class="title-underline-view mb-3">View All</h6>
+                                <h6 class="title-underline-view mb-2 text-center">View All</h6>
                             </a>
                         </li>
                     </ul>
                 </div>
-
             </div>
-
-            <!-- About Sub menu -->
-            <div class="dropdownSection" data-dropdown="about">
+            <div class="dropdownSection left industryGroup" data-dropdown="product">
+                <!-- with button -->
+                <div class="dropdownContent dropdownContent-product">
+                    <!-- packagin list -->
+                    <div class="background">
+                        <div class="linkGroup ">
+                            <div class="industry-group ">
+                                <div class="industry-group-sub ">
+                                    <div class="container">
+                                        <div class="row">
+                                            {% set items = frappe.get_all('Item Group', order_by="priority" , limit = 14 ,
+                                            fields=['is_group','image','website_image','route','parent_item_group','item_group_name','content_link'])
+                                            %}
+                                            {% for item in items %}
+                                            {% if item.parent_item_group == "Products" %}
+                                            <div class="col-3  inner dropdown mb-4">
+                                                <a class="" href="/{{ item.content_link|replace(' ','')|lower}}">
+                                                    <h5 class="title d-flex justify-content-center" style="margin-bottom: 0px;">
+                                                        {{ item.item_group_name or item.name }}
+                                                    </h5>
+                                                </a>
+                                                <a class="side-image d-flex justify-content-center"
+                                                    href="/{{ item.content_link|replace(' ','')|lower}}">
+                                                    <img data-pagespeed-no-defer
+                                                        src="{{ item.website_image or item.image or 'no-image.jpg'  }}"
+                                                        width="150" alt="{{ item.item_group_name }}"
+                                                        id="product-nav-product-image" />
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- careers sub menu -->
+            <!-- <div class="dropdownSection" data-dropdown="Careers">
                 <div class="dropdownContent" style="width: 200px;">
                     <ul class="linkGroup">
-                        <li>
-                            <a class="linkContainer" href="/about">
-                                <img class="nav-service-icon" src="/files/about.svg" alt="About Noble"
-                                    title="About Noble">
-                                <h6 class="link-underline mt-1">About Noble</h6>
-                            </a>
-                        </li>
-
                         <li>
                             <a class="linkContainer" href="/jobs">
                                 <img class="nav-service-icon" src="/files/job-search.svg" alt="Job Opening"
@@ -233,18 +273,15 @@
                                 <h6 class="link-underline mt-1">Job Opening</h6>
                             </a>
                         </li>
-
                     </ul>
-
                 </div>
-
-            </div>
+            </div> -->
             <!-- login submenu -->
             {% if frappe.session.user != 'Guest' %}
             <div class="dropdownSection left logged-in" data-dropdown="noble-login">
                 <div class="dropdownContent">
                     <ul class="linkGroup linkList loginGroup">
-                        <li>
+                        <li class="ml-3">
                             <a class="linkContainer item-about" href="/me" rel="nofollow">
                                 <img class="nav-service-icon" src="/files/account.svg" alt="My Account"
                                     title="My Account">
@@ -252,27 +289,25 @@
                                 </h6>
                             </a>
                         </li>
-                        <li>
+                        <li class="ml-3">
                             <a class="linkContainer item-about " href="/?cmd=web_logout" rel="nofollow">
                                 <img class="nav-service-icon" src="/files/logout.svg" alt="Logout" title="Logout">
                                 <h6 class="d-inline-block mt-1">{{ _('Logout') }}
                                 </h6>
                             </a>
                         </li>
-                        <li>
+                        <li class="ml-3">
                             <a class="linkContainer item-about " href="/desk" rel="nofollow">
                                 <img class="nav-service-icon" src="/files/swap.svg" alt="Switch To Desk"
                                     title="Switch To Desk">
-                                <h6 class="d-inline-block mt-1" style="font-size: 15px;">{{ _('Switch To Desk') }}
+                                <h6 class="d-inline-block mt-1">{{ _('Switch To Desk') }}
                                 </h6>
                             </a>
                         </li>
                 </div>
             </div>
         </div>
-
         {% endif %}
     </div>
-
     </div>
 </header>

@@ -1,10 +1,21 @@
 
+{% extends "templates/web.html" %}
+
+{% set title = "About Us" %}
+{% block header %}<h1>About Us</h1>{% endblock %}
+
+{% block page_content %}
 {{ doc.company_introduction }}
 <!---------------------- Timeline -------------------------- -->
 
 
 {{doc.above_content}}
+
 <section class="section-timeline-main" id="section-timeline-main">
+    <img src="/files/almonds.svg" alt="image1" class="animate-image" id="image-1">
+    <img src="/files/Cashew.svg" alt="image1" class="animate-image" id="image-2">
+    <img src="/files/walnut.svg" alt="image1" class="animate-image" id="image-3">
+    <img src="/files/almonds.svg" alt="image1" class="animate-image" id="image-4">
     <div class="container">
         <div class="row mt-3">
             <div class="col-md-12">
@@ -41,5 +52,5 @@
 {{doc.middle_content}}
 
 
-
+{% endblock %}
 <!-- ---------------------Section Services Start-------------------------- -->
