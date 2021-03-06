@@ -97,9 +97,8 @@
     {{ head_html or "" }}
     {%- endif %}
     <!-- custom CSS -->
-    <link rel="stylesheet" href="/assets/nobleweb/css/bootstrap.min.css">
-    <!-- OWL CSS -->
-    <link rel="stylesheet" href="/assets/nobleweb/css/owl.carousel.min.css">
+    <link rel="stylesheet" crossorigin="anonymous"
+    href="https://cdn.jsdelivr.net/combine/npm/bootstrap-css-only@4.1.0/css/bootstrap.min.css,npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css">
     <!-- <link rel="stylesheet" href="/assets/eieweb/css/font-awesome.min.css"> -->
 
     <!-- END CUSTOM CSS -->
@@ -161,20 +160,20 @@
     {% block base_scripts %}
     <!-- js should be loaded in body! -->
 
-    <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
 
     {% endblock %}
     <!-- design script -->
-    <script type="text/javascript" src="/assets/nobleweb/js/owl.carousel.min.js"></script>
-    <script src="/assets/nobleweb/js/gsap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
 
 
     <!-- animation script currently running scrollMagic only -->
 
     <script type="text/javascript" src="/assets/nobleweb/js/combine.min.js"></script>
-    <script src="/assets/nobleweb/js/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.5/ScrollTrigger.min.js"></script>
    
 
     {%- for link in web_include_js %}
