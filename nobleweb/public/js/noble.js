@@ -557,7 +557,7 @@ $('#related-Item').owlCarousel({
     margin: 10,
     autoPlay: true,
     autoWidth: true,
-    autoplayTimeout: 500,
+    autoplayTimeout: 2000,
     autoplayHoverPause: true,
     responsive: {
         0: {

@@ -132,6 +132,7 @@
         window.dev_server = {{ dev_server }};
         window.socketio_port = {{ frappe.socketio_port }};
     </script>
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 </head>
 
 <body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}"
@@ -156,29 +157,17 @@
     {%- block footer -%}
     {% include "templates/includes/footer/noble_footer.html" %}
     {%- endblock -%}
-    <script crossorigin="anonymous" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     {% block base_scripts %}
-    <!-- js should be loaded in body! -->
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
-    <script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
-
+    
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/combine/gh/finbyz/nobleweb/nobleweb/public/js/frappe-web.min.js,npm/popper.js@1.12.9/dist/umd/popper.min.js,npm/bootstrap@4.1.0/dist/js/bootstrap.min.js"></script>
+    
     {% endblock %}
     <!-- design script -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
-
-
-    <!-- animation script currently running scrollMagic only -->
-
-    <script type="text/javascript" src="/assets/nobleweb/js/combine.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/combine/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js,npm/particles.js@2.0.0/particles.min.js,npm/gsap@3.6.0/dist/gsap.min.js,gh/finbyz/nobleweb/nobleweb/public/js/combine.min.js,gh/finbyz/nobleweb/nobleweb/public/js/ScrollTrigger.min.js"></script>
    
-
-    {%- for link in web_include_js %}
+     {%- for link in web_include_js %}
     <script type="text/javascript" src="{{ link | abs_url }}"></script>
-
     {%- endfor -%}
     
 
