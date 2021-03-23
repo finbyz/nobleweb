@@ -1,9 +1,25 @@
+// Passive event listeners
+jQuery.event.special.touchstart = {
+ 
+    setup: function( _, ns, handle ) {
+      
+        this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
+    }
+};
+jQuery.event.special.touchmove = {
+    setup: function( _, ns, handle ) {
+      console.log('e')
+        this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
+    }
+};
+
 
 $(document).ready(() => {
     if ($('#noble_logo').attr("src") == "/files/transparent_nobel_logo.png") {
         $('#noble_logo').addClass('logo_width');
     } else {
         $('#noble_logo').removeClass('logo_width');
+      
     }
     $(window).bind('load scroll', function () {
         var scroll = $(window).scrollTop();
@@ -12,6 +28,7 @@ $(document).ready(() => {
             $(".nobleNav").addClass("active");
             var newsrc = "/files/nobel_color_logo.png";
             $('#noble_logo').attr("src", newsrc);
+            $('#noble_logo').css({"width":"95px","height":"55px"});
             $('#noble_logo').removeClass('logo_width');
         }
         else {
@@ -19,6 +36,7 @@ $(document).ready(() => {
             $('.nobleNav').removeClass('animated');
             var oldsrc = "/files/transparent_nobel_logo.png";
             $('#noble_logo').attr("src", oldsrc);
+            $('#noble_logo').css("width", "auto");
             $('#noble_logo').addClass('logo_width');
         }
     })
@@ -440,19 +458,7 @@ $(document).ready(function () {
             }))
             .addTo(scrollController)
     })
-    $(".nobel-image-fadeinzoom-out").each(function () {
-        new ScrollMagic.Scene({
-            triggerElement: this,
-            triggerHook: 1,
-        })
-            .setTween(TweenMax.from(this, 1.2, {
-                scale: 0.1,
-                opacity: 0,
-                ease: Power0.easeNone,
-            }))
-            .addTo(scrollController)
-    })
-
+   
     gsap.timeline({
         scrollTrigger: {
             trigger: "#team",
@@ -584,3 +590,11 @@ $(document).ready(() => {
         $('.owl-responsive').height(same_height);
     });
 });
+// give accessible name to button 
+$(window).on('load',()=>{
+	$('.owl-carousel').each(function() {
+	$(this).find('.owl-dot').each(function(index) {
+	  $(this).attr('aria-label', index + 1);
+	});
+  });
+})

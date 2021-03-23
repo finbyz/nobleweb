@@ -6,7 +6,7 @@
                 <a href="/">
                     <img data-pagespeed-no-defer src="/files/transparent_nobel_logo.png" id="noble_logo"
                         alt="Noble Enterprise" title="Noble Enterprise" style="transform: translate(0%, 0%);"
-                        width="170" />
+                        width="170"  />
                 </a>
             </div>
         </li>
@@ -53,7 +53,7 @@
                 <nav id="navsidebar" class="vh-100">
                     <!-- navsidebar Links -->
                     <div class="d-flex justify-content-center p-2">
-                        <img src="/files/noble-logo.png" alt="logo" title="Logo" width="150" style="
+                        <img src="/files/noble-logo.png" alt="logo" title="Logo" width="150" height="120" style="
                         width: 150px;">
                     </div>
                     <ul class="list-unstyled components">
@@ -61,8 +61,7 @@
                             <a href="/">Home</a>
                         </li>
                         <li class="p-3">
-                            <a href="/about">
-                                About Us</a>
+                            <a href="/about">About Us</a>
                         </li>
 
                         <li class="p-3">
@@ -139,7 +138,7 @@
                             <ul class="collapse list-unstyled ml-5" id='loginsubmenu'>
                                 <li>
                                     <a class="linkContainer" href="/me" rel="nofollow">
-                                        <img class="nav-service-icon" src="/files/account.svg" alt="My Account"
+                                        <img class="nav-service-icon" width="50" height="30" src="/files/account.svg" alt="My Account"
                                             title="My Account">
                                         <h6 class="link-underline mt-1">{{ _('My Account') }}
                                         </h6>
@@ -147,7 +146,7 @@
                                 </li>
                                 <li>
                                     <a class="linkContainer item-about" href="/?cmd=web_logout" rel="nofollow">
-                                        <img class="nav-service-icon" src="/files/logout.svg" alt="Logout"
+                                        <img class="nav-service-icon" width="50" height="30" src="/files/logout.svg" alt="Logout"
                                             title="Logout">
                                         <h6 class="link-underline mt-1">{{ _('Logout') }}
                                         </h6>
@@ -155,7 +154,7 @@
                                 </li>
                                 <li>
                                     <a class="linkContainer item-about" href="/desk" rel="nofollow">
-                                        <img class="nav-service-icon" src="/files/swap.svg" alt="Switch To Desk"
+                                        <img class="nav-service-icon" width="50" height="30" src="/files/swap.svg" alt="Switch To Desk"
                                             title="Switch To Desk">
                                         <h6 class="link-underline mt-1">{{ _('Switch To Desk') }}
                                         </h6>
@@ -198,12 +197,10 @@
                                                         {{ item.item_group_name or item.name }}
                                                     </h5>
                                                 </a>
-                                                <a class="side-image d-flex justify-content-center"
-                                                    href="/{{ item.route }}">
-                                                    <img data-pagespeed-no-defer
-                                                        src="{{item.image or item.website_image or 'no-image.jpg'  }}"
-                                                        width="150" alt="{{ item.item_group_name }}"
-                                                        id="product-nav-image" />
+                                                <a class="side-image d-flex justify-content-center" href="/{{ item.route }}">
+                                                    <img data-pagespeed-no-defer src="{{item.image or item.website_image or 'no-image.jpg'  }}"
+                                                    width="150" height="130" alt="{{ item.item_group_name }}"
+                                                    id="product-nav-image" />
                                                 </a>
                                             </div>
                                             {% endif %}
@@ -248,7 +245,7 @@
                                                     href="/{{ item.content_link|replace(' ','')|lower}}">
                                                     <img data-pagespeed-no-defer
                                                         src="{{ item.website_image or item.image or 'no-image.jpg'  }}"
-                                                        width="150" alt="{{ item.item_group_name }}"
+                                                        width="150" height="130" alt="{{ item.item_group_name }}"
                                                         id="product-nav-product-image" />
                                                 </a>
                                             </div>
@@ -262,20 +259,7 @@
                     </div>
                 </div>
             </div>
-            <!-- careers sub menu -->
-            <!-- <div class="dropdownSection" data-dropdown="Careers">
-                <div class="dropdownContent" style="width: 200px;">
-                    <ul class="linkGroup">
-                        <li>
-                            <a class="linkContainer" href="/jobs">
-                                <img class="nav-service-icon" src="/files/job-search.svg" alt="Job Opening"
-                                    title="Job Opening">
-                                <h6 class="link-underline mt-1">Job Opening</h6>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
+           
             <!-- login submenu -->
             {% if frappe.session.user != 'Guest' %}
             <div class="dropdownSection left logged-in" data-dropdown="noble-login">
@@ -283,7 +267,7 @@
                     <ul class="linkGroup linkList loginGroup">
                         <li class="ml-3">
                             <a class="linkContainer item-about" href="/me" rel="nofollow">
-                                <img class="nav-service-icon" src="/files/account.svg" alt="My Account"
+                                <img class="nav-service-icon" width="50" height="30" src="/files/account.svg" alt="My Account"
                                     title="My Account">
                                 <h6 class="d-inline-block mt-1">{{ _('My Account') }}
                                 </h6>
@@ -291,14 +275,14 @@
                         </li>
                         <li class="ml-3">
                             <a class="linkContainer item-about " href="/?cmd=web_logout" rel="nofollow">
-                                <img class="nav-service-icon" src="/files/logout.svg" alt="Logout" title="Logout">
+                                <img class="nav-service-icon" width="50" height="30" src="/files/logout.svg" alt="Logout" title="Logout">
                                 <h6 class="d-inline-block mt-1">{{ _('Logout') }}
                                 </h6>
                             </a>
                         </li>
                         <li class="ml-3">
                             <a class="linkContainer item-about " href="/desk" rel="nofollow">
-                                <img class="nav-service-icon" src="/files/swap.svg" alt="Switch To Desk"
+                                <img class="nav-service-icon" width="50" height="30" src="/files/swap.svg" alt="Switch To Desk"
                                     title="Switch To Desk">
                                 <h6 class="d-inline-block mt-1">{{ _('Switch To Desk') }}
                                 </h6>
