@@ -1,18 +1,14 @@
 // Passive event listeners
 jQuery.event.special.touchstart = {
- 
     setup: function( _, ns, handle ) {
-      
         this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
     }
 };
 jQuery.event.special.touchmove = {
     setup: function( _, ns, handle ) {
-      console.log('e')
         this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
     }
 };
-
 
 $(document).ready(() => {
     if ($('#noble_logo').attr("src") == "/files/transparent_nobel_logo.png") {
@@ -591,10 +587,24 @@ $(document).ready(() => {
     });
 });
 // give accessible name to button 
-$(window).on('load',()=>{
+$(window).on('load',()=>{3
 	$('.owl-carousel').each(function() {
 	$(this).find('.owl-dot').each(function(index) {
 	  $(this).attr('aria-label', index + 1);
 	});
   });
 })
+
+// service worker
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('./assets/nobleweb/js/sw.js', {scope: './assets/nobleweb/js/'}).then(function(registration) {
+//      // Registration was successful
+//      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    
+//     }, function(err) {
+//       // registration failed :(
+//       console.log('ServiceWorker registration failed: ', err);
+//     });
+// } else{
+//     console.log('serviceworker is not working')
+// }
