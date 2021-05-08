@@ -1,0 +1,18 @@
+{
+    "short_name": "noble",
+    "name": "Noble Enterprise",
+    "start_url": "/",  
+    "scope": "/",
+    "icons": [
+      {
+        "src":"https://nobledrynuts.com/files/nobel_color_logo.png",
+        "sizes": "550X550",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "background_color": "#F37150",
+    "theme_color": "#F37150",
+    "display": "standalone",
+    "prefer_related_applications": false
+  }

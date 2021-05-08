@@ -587,7 +587,7 @@ $(document).ready(() => {
     });
 });
 // give accessible name to button 
-$(window).on('load',()=>{3
+$(window).on('load',()=>{
 	$('.owl-carousel').each(function() {
 	$(this).find('.owl-dot').each(function(index) {
 	  $(this).attr('aria-label', index + 1);
