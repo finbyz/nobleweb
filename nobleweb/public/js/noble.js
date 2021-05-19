@@ -484,7 +484,7 @@ function lead_creation() {
             'lead_name': $('#lead_name').val(),
             'subject': $('#subject').val(),
             'msg': $('#msg').val(),
-            'title': '',
+            'title': document.title + '</br>' + window.location.href,
             'email': $('#email').val()
         },
         callback: function (r) {
@@ -594,17 +594,32 @@ $(window).on('load',()=>{
 	});
   });
 })
+function lead_creation_campaign() {
+    frappe.call({
+        method: "nobleweb.api.set_form_contact_data",
+        args: {
+            'lead_name': $('#campain_lead_name').val(),
+            'company_name': $('#campain_company_name').val(),
+            'mobile_no': $('#campain_mobile_no').val(),
+            'title': document.title + '</br>' + window.location.href,
+            'email': $('#campain_email').val()
+        },
+        callback: function(r) {
+            $('#campain_lead_name').val('');
+            $('#campain_company_name').val('');
+            $('#campain_mobile_no').val('');
+            $('#campain_email').val('');
+            frappe.msgprint("Your interest is inspiring us to do better...<br>Noble Enterprise expert shall reach you shortly");
+        }
+    });
+    $('#inquiry-form-section').removeClass('slide-right');
+};
+var form = $('#inquiry-campain'),
+    submit = form.find('[name="submit"]');
 
-// service worker
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('./assets/nobleweb/js/sw.js', {scope: './assets/nobleweb/js/'}).then(function(registration) {
-//      // Registration was successful
-//      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    
-//     }, function(err) {
-//       // registration failed :(
-//       console.log('ServiceWorker registration failed: ', err);
-//     });
-// } else{
-//     console.log('serviceworker is not working')
-// }
+form.on('submit', function(e) {
+    setTimeout(function() {
+        lead_creation_campaign();
+    }, 100);
+    e.preventDefault();
+})

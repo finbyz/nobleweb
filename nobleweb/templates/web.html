@@ -47,7 +47,9 @@
         </div>
         {% endif %} -->
 
-    
+        {% if doctype == "Web Page" %}
+        {% include "templates/includes/form/inquiry_form.html" %}
+        {% endif %}
 
         <div class="page-footer">
             {%- block page_footer -%}{%- endblock -%}
