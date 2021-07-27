@@ -24,7 +24,7 @@ $(document).ready(() => {
             $(".nobleNav").addClass("active");
             var newsrc = "/files/nobel_color_logo.png";
             $('#noble_logo').attr("src", newsrc);
-            $('#noble_logo').css({"width":"95px","height":"55px"});
+            $('#noble_logo').css({"width":"95px"});
             $('#noble_logo').removeClass('logo_width');
         }
         else {
@@ -623,3 +623,4 @@ form.on('submit', function(e) {
     }, 100);
     e.preventDefault();
 })
+

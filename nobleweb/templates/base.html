@@ -22,6 +22,7 @@
     {% if small_description %}
     <meta name="description" content="{{ small_description }}" />
     {% endif %}
+    {% block description %}{% endblock %}
 
     {% if (doctype == "Web Page" and name == "index") %}<link rel="canonical" href="https://nobledrynuts.com/index">  {% endif %}
 
@@ -58,7 +59,7 @@
 
     {% if doctype == "Item Group" or doctype == "Item" %}
     <script type="application/ld+json" crossorigin="anonymous">
-    	{"@context":"https://schema.org/","@type":"Product","name":"{{ title }}","image":"http://nobledrynuts.com{{ image or website_image or cover_image }}","description":"{{ seo_description or description or 'noble Products'  }}","brand":{"@type":"Thing","name":"https://nobledrynuts.com/files/noble-logo.png"},"review":{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Vishv"}},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"8"}, "offers": {"@type": "Offer","url": "https://nobledrynuts.com/{{ route }}", "priceCurrency": "INR","price": "500", "priceValidUntil": "2021-11-20","itemCondition": "https://schema.org/UsedCondition","availability": "https://schema.org/InStock"}}
+    	{"@context":"https://schema.org/","@type":"Product","name":"{{ title }}","image":"http://nobledrynuts.com{{ image or website_image or cover_image or  '/files/noble-logo.png' }}","description":"{{ seo_description or description or 'noble Products'  }}","brand":{"@type":"Thing","name":"Noble Enterprise"},"review":{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Vishv"}},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"8"}, "offers": {"@type": "Offer","url": "https://nobledrynuts.com/{{ route }}", "priceCurrency": "INR","price": "500", "priceValidUntil": "2021-11-20","itemCondition": "https://schema.org/UsedCondition","availability": "https://schema.org/InStock"}}
     </script>
     {% endif %}
 
@@ -187,26 +188,27 @@
     <script type="text/javascript"   crossorigin="anonymous" src="https://cdn.jsdelivr.net/combine/gh/finbyz/nobleweb/nobleweb/public/js/frappe-web.min.js,npm/bootstrap@4.1.0/dist/js/bootstrap.min.js"></script>
     
     {% endblock %}
-   
-    <script src= "/assets/nobleweb/js/sw.js"></script>
-    <script>
-       
-       if('serviceWorker' in navigator)  {
-           console.log("INside service worker")
-          navigator.serviceWorker
-              .register('/assets/nobleweb/js/sw.js')
-           }
- 
-    </script>
+
+  <!-- <script>
+    if ('serviceWorker' in navigator) {
+    // declaring scope manually
+    navigator.serviceWorker.register('/assets/nobleweb/js/sw.js', {scope: '/assets/nobleweb/js/sw.js'}).then(function(registration) {
+      console.log('Service worker registration succeeded:', registration);
+    }, /*catch*/ function(error) {
+      console.log('Service worker registration failed:', error);
+    });
+  } else {
+    console.log('Service workers are not supported.');
+  }
+  </script> -->
 
     <script type="text/javascript"  src="https://cdn.jsdelivr.net/combine/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js,npm/gsap@3.6.0/dist/gsap.min.js,gh/finbyz/nobleweb/nobleweb/public/js/combine.min.js,gh/finbyz/nobleweb/nobleweb/public/js/ScrollTrigger.min.js"></script>
    
      {%- for link in web_include_js %}
     <script type="text/javascript" src="{{ link | abs_url }}"></script>
     {%- endfor -%}
-    
-
     <script type="text/javascript" src="/assets/nobleweb/js/noble.js" ></script>
+    <!-- <script type="text/javascript" src="/pwa.js" ></script> -->
     {%- block script %}{%- endblock %}
     <!-- csrf_token -->
     {%- block body_include %}{{ body_include or "" }}{% endblock -%}
